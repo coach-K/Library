@@ -54,7 +54,8 @@ public class BookQueueTest {
 
     @Test
     public void testGetAllItems() throws Exception {
-
+        bookQueue.addAllItems(books);
+        assertArrayEquals(books.toArray(), bookQueue.getAllItems().toArray());
     }
 
     @Test

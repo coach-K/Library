@@ -43,7 +43,7 @@ public class ItemQueue<B extends Item, M extends Member> implements CollectionsI
 
     @Override
     public Collection<B> getAllItems() {
-        return null;
+        return itemList;
     }
 
     @Override
