@@ -80,7 +80,8 @@ public class BookQueueTest {
 
     @Test
     public void testItemSize() throws Exception {
-        
+        bookQueue.addAllItems(books);
+        assertEquals(bookQueue.itemSize(), 2);
     }
 
     @Test
