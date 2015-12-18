@@ -47,12 +47,12 @@ public class ItemQueue<B extends Item, M extends Member> implements CollectionsI
     }
 
     @Override
-    public void removeItem(B book) {
-
+    public void removeItem(B item) {
+        itemList.remove(item);
     }
 
     @Override
-    public void removeAllItems(Collection<B> books) {
+    public void removeAllItems(Collection<B> item) {
 
     }
 

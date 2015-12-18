@@ -60,7 +60,10 @@ public class BookQueueTest {
 
     @Test
     public void testRemoveItem() throws Exception {
-
+        bookQueue.addAllItems(books);
+        assertEquals(bookQueue.itemSize(), 2);
+        bookQueue.removeItem(book1);
+        assertEquals(bookQueue.itemSize(), 1);
     }
 
     @Test
