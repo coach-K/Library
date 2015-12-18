@@ -41,7 +41,8 @@ public class BookQueueTest {
 
     @Test
     public void testAddAllItems() throws Exception {
-
+        bookQueue.addAllItems(books);
+        assertTrue("bookQueue.itemSize() is greater than 0", bookQueue.itemSize()>1);
     }
 
     @Test
