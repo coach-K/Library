@@ -68,12 +68,19 @@ public class BookQueueTest {
 
     @Test
     public void testRemoveAllItems() throws Exception {
+        bookQueue.addAllItems(books);
+        assertEquals(bookQueue.itemSize(), 2);
 
+        ArrayList<Integer> indexes = new ArrayList<>();
+        indexes.add(0);
+        indexes.add(0);
+        bookQueue.removeAllItems(indexes);
+        assertEquals(bookQueue.itemSize(), 0);
     }
 
     @Test
     public void testItemSize() throws Exception {
-
+        
     }
 
     @Test

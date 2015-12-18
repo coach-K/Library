@@ -12,8 +12,9 @@ public interface CollectionsInterface<B extends Item, M extends Member> {
     public void addAllItems(Collection<B> items);
     public B getItem(int index);
     public Collection<B> getAllItems();
-    public void removeItem(B book);
-    public void removeAllItems(Collection<B> books);
+    public void removeItem(B item);
+    public void removeItem(int index);
+    public void removeAllItems(Collection<Integer> indexes);
     public int itemSize();
     public void clearItems();
 
