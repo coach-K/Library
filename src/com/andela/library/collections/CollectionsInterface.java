@@ -10,7 +10,7 @@ public interface CollectionsInterface<B extends Item, M extends Member> {
 
     public void addItem(B item);
     public void addAllItems(Collection<B> items);
-    public B getNextItem();
+    public B getItem(int index);
     public Collection<B> getAllItems();
     public void removeItem(B book);
     public void removeAllItems(Collection<B> books);
@@ -19,7 +19,7 @@ public interface CollectionsInterface<B extends Item, M extends Member> {
 
     public void addMember(M member);
     public void addAllMembers(Collection<M> members);
-    public M getNextMember();
+    public M getMember(int index);
     public Collection<M> getAllMembers();
     public void removeMember(M member);
     public void removeAllMembers(Collection<M> members);

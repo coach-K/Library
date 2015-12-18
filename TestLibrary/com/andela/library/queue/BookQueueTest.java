@@ -46,8 +46,10 @@ public class BookQueueTest {
     }
 
     @Test
-    public void testGetNextItem() throws Exception {
-
+    public void testGetItem() throws Exception {
+        bookQueue.addAllItems(books);
+        Book book = bookQueue.getItem(0);
+        assertTrue(book.getTitle().equals(book1.getTitle()));
     }
 
     @Test
@@ -86,7 +88,7 @@ public class BookQueueTest {
     }
 
     @Test
-    public void testGetNextMember() throws Exception {
+    public void testGetMember() throws Exception {
 
     }
 

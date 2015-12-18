@@ -37,8 +37,8 @@ public class ItemQueue<B extends Item, M extends Member> implements CollectionsI
     }
 
     @Override
-    public B getNextItem() {
-        return null;
+    public B getItem(int index) {
+        return itemList.get(index);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class ItemQueue<B extends Item, M extends Member> implements CollectionsI
     }
 
     @Override
-    public M getNextMember() {
+    public M getMember(int index) {
         return null;
     }
 
