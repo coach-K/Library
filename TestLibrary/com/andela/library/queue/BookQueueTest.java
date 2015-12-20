@@ -18,11 +18,11 @@ public class BookQueueTest {
     Student student2 = new Student("GRACE OMOTOSO");
     Staff staff1 = new Staff("OLUWATOSIN ADESANYA");
 
-    Book book1 = new Book("GIFTED HANDS", "123-ANDELA");
-    Book book2 = new Book("GIFTED LEGS", "456-ANDELA");
+    Book book1 = new Book("GIFTED HANDS", "123-ANDELA", 4);
+    Book book2 = new Book("GIFTED LEGS", "456-ANDELA", 5);
 
     ArrayList<Book> books;
-    BookQueue<Book, Member> bookQueue;
+    BookQueue bookQueue;
 
     ArrayList<Member> members;
 
@@ -38,7 +38,7 @@ public class BookQueueTest {
         books.add(book1);
         books.add(book2);
 
-        bookQueue = new BookQueue<>();
+        bookQueue = new BookQueue();
     }
 
     @After

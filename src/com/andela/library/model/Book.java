@@ -6,7 +6,8 @@ public class Book extends Item {
     private String title;
     private String isbnNumber;
 
-    public Book(String title, String isbnNumber) {
+    public Book(String title, String isbnNumber, int totalCopies) {
+        super(totalCopies);
         this.title = title;
         this.isbnNumber = isbnNumber;
     }

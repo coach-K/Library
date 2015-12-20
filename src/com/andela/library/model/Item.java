@@ -1,12 +1,13 @@
 package com.andela.library.model;
 
 
-public class Item {
+public abstract class Item {
 
     private int id;
     private int totalItem;
 
-    public Item() {
+    public Item(int totalItem) {
+        this.totalItem = totalItem;
     }
 
     public int getId() {

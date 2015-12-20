@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.PriorityQueue;
 
-public class ItemQueue<B extends Item, M extends Member> implements CollectionsInterface<B, M> {
+public abstract class ItemQueue<B extends Item, M extends Member> implements CollectionsInterface<B, M> {
 
     private ArrayList<B> itemList;
     private PriorityQueue<M> memberList;
