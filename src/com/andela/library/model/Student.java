@@ -9,6 +9,6 @@ public class Student extends Member {
 
     @Override
     public int compareTo(Member o) {
-        return 0;
+        return (o instanceof Staff || o.getId() < this.getId()) ? 1 : -1;
     }
 }

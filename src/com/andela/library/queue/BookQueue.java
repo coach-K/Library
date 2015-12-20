@@ -13,22 +13,22 @@ public class BookQueue extends ItemQueue<Book, Member> {
         super();
     }
 
-    public void singleBookSingleMemberRequest(Book book, Member member){
+    public void singleBookSingleMemberQueue(Book book, Member member){
         addItem(book);
         addMember(member);
     }
 
-    public void multipleBookSingleMemberRequest(Collection<Book> book, Member member){
+    public void multipleBookSingleMemberQueue(Collection<Book> book, Member member){
         addAllItems(book);
         addMember(member);
     }
 
-    public void multipleBookMultipleMemberRequest(Collection<Book> book, Collection<Member> member){
+    public void multipleBookMultipleMemberQueue(Collection<Book> book, Collection<Member> member){
         addAllItems(book);
         addAllMembers(member);
     }
 
-    public void singleBookMultipleMemberRequest(Book book, Collection<Member> member){
+    public void singleBookMultipleMemberQueue(Book book, Collection<Member> member){
         addItem(book);
         addAllMembers(member);
     }

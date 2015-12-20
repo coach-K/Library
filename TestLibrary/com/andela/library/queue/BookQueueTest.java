@@ -18,8 +18,8 @@ public class BookQueueTest {
     Student student2 = new Student("GRACE OMOTOSO");
     Staff staff1 = new Staff("OLUWATOSIN ADESANYA");
 
-    Book book1 = new Book("GIFTED HANDS", "123-ANDELA", 4);
-    Book book2 = new Book("GIFTED LEGS", "456-ANDELA", 5);
+    Book book1 = new Book("GIFTED HANDS", "BEN CARSON", "123-ANDELA", 4);
+    Book book2 = new Book("GIFTED LEGS", "NEB SONCAR", "456-ANDELA", 5);
 
     ArrayList<Book> books;
     BookQueue bookQueue;
@@ -127,7 +127,7 @@ public class BookQueueTest {
     @Test
     public void testGetAllMembers() throws Exception {
         bookQueue.addAllMembers(members);
-        assertArrayEquals(members.toArray(),bookQueue.getAllMembers().toArray());
+        assertArrayEquals(members.toArray(), bookQueue.getAllMembers().toArray());
     }
 
     @Test
@@ -163,4 +163,29 @@ public class BookQueueTest {
         bookQueue.clearMembers();
         assertEquals(bookQueue.memberSize(), 0);
     }
+
+    @Test
+    public void testSingleBookSingleMemberQueue() throws Exception {
+        bookQueue.singleBookSingleMemberQueue(book1, student1);
+        assertTrue(bookQueue.itemSize() > 0 && bookQueue.memberSize() > 0);
+    }
+
+    @Test
+    public void testSingleBookMultipleMemberQueue() throws Exception {
+        bookQueue.singleBookMultipleMemberQueue(book1, members);
+        assertTrue(bookQueue.itemSize() < 2 && bookQueue.memberSize() > 2);
+    }
+
+    @Test
+    public void testMultipleBookMultipleMemberQueue() throws Exception {
+        bookQueue.multipleBookMultipleMemberQueue(books, members);
+        assertTrue(bookQueue.itemSize() > 1 && bookQueue.memberSize() > 2);
+    }
+
+    @Test
+    public void testMultipleBookSingleMemberQueue() throws Exception {
+        bookQueue.multipleBookSingleMemberQueue(books, student1);
+        assertTrue(bookQueue.itemSize() > 1 && bookQueue.memberSize() == 1);
+    }
+
 }
