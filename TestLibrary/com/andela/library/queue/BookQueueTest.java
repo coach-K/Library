@@ -18,8 +18,8 @@ public class BookQueueTest {
     Student student2 = new Student("GRACE OMOTOSO");
     Staff staff1 = new Staff("OLUWATOSIN ADESANYA");
 
-    Book book1 = new Book("GIFTED HANDS", "123-ANDELA", 4);
-    Book book2 = new Book("GIFTED LEGS", "456-ANDELA", 5);
+    Book book1 = new Book("GIFTED HANDS", "BEN CARSON", "123-ANDELA", 4);
+    Book book2 = new Book("GIFTED LEGS", "NEB SONCAR", "456-ANDELA", 5);
 
     ArrayList<Book> books;
     BookQueue bookQueue;
@@ -127,7 +127,7 @@ public class BookQueueTest {
     @Test
     public void testGetAllMembers() throws Exception {
         bookQueue.addAllMembers(members);
-        assertArrayEquals(members.toArray(),bookQueue.getAllMembers().toArray());
+        assertArrayEquals(members.toArray(), bookQueue.getAllMembers().toArray());
     }
 
     @Test

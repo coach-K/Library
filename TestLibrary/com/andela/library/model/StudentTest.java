@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class StaffTest {
+public class StudentTest {
 
     Staff staff1;
     Student student1;
@@ -18,9 +18,8 @@ public class StaffTest {
         student1.setId(2);
     }
 
-
     @Test
     public void testCompareTo() throws Exception {
-        assertTrue(staff1.compareTo(student1) == -1);
+        assertTrue(student1.compareTo(staff1) == 1);
     }
 }
