@@ -20,7 +20,6 @@ public interface CollectionsInterface<B extends Item, M extends Member> {
 
     public void addMember(M member);
     public void addAllMembers(Collection<M> members);
-    public M getMember(int index);
     public Collection<M> getAllMembers();
     public void removeMember(M member);
     public void removeAllMembers(Collection<M> members);

@@ -70,46 +70,51 @@ public class ItemQueue<B extends Item, M extends Member> implements CollectionsI
 
     @Override
     public void clearItems() {
-
+        itemList.clear();
     }
 
     @Override
     public void addMember(M member) {
-
+        member.setId(memberCounter);
+        memberList.add(member);
+        memberCounter++;
     }
 
     @Override
     public void addAllMembers(Collection<M> members) {
-
+        for (M member : members){
+            addMember(member);
+        }
     }
 
-    @Override
-    public M getMember(int index) {
-        return null;
+    public M getNextMember() {
+        return memberList.poll();
     }
 
     @Override
     public Collection<M> getAllMembers() {
-        return null;
+        return memberList;
     }
 
     @Override
     public void removeMember(M member) {
-
+        memberList.remove(member);
     }
 
     @Override
     public void removeAllMembers(Collection<M> members) {
-
+        for (M member : members){
+            removeMember(member);
+        }
     }
 
     @Override
     public int memberSize() {
-        return 0;
+        return memberList.size();
     }
 
     @Override
     public void clearMembers() {
-
+        memberList.clear();
     }
 }
