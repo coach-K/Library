@@ -1,8 +1,8 @@
 # Checkpoint One (Library)
 
->Research reveals that most people visit fun environments such as cinemas, churches, libraries, amusement pack e.t.c because of its organized fun activities.
+>Research reveals that most people visit fun environments such as cinemas, libraries, amusement park e.t.c because of its organized fun activities.
 
->Imagine how muddled a church or a Software development process or a football team would be if it's not organized. 
+>Imagine how muddled an amusement park or a football club would be if it's not organized. 
 #####
 The subsequent paragraphs explains the process of real life Book Library senario where Staff has priority over Students.
 
@@ -188,7 +188,11 @@ while (book.getTotalItem() > 0 && members.poll() != null) {
     book.setTotalItem(book.getTotalItem() - 1);
 }
 
-//OR
+```
+#
+>OR
+#
+```Java
 
 Iterator<Member> iterator = library.borrowedBookIterator(book2);
 	while (iterator.hasNext()) {
