@@ -1,6 +1,6 @@
 # Checkpoint One (Library)
 
->Research reveals that most people visit fun environments such as cinemas, libraries, amusement park e.t.c because of its organized fun activities.
+>Research reveals that most people visit fun environment such as cinemas, libraries, amusement park e.t.c because of its organized fun activities.
 
 >Imagine how muddled an amusement park or a football club would be if it's not organized. 
 #####
@@ -8,7 +8,7 @@ The subsequent paragraphs explains the process of real life Book Library senario
 
 0.  Requester requests for book.
 1.  Before a book is lend out.
-2.  Library Manager verifies that requester (Staff or Student) is a member of its Book Library Club, else no book is lend out.
+2.  Library Manager verifies that requester (Staff or Student) is a member of Book Library Club, else no book is lend out.
 3.  If requester is a member then Library Manager checks if the requested book is available.
 4.  If true then the book is lend out based on set priority.
 
@@ -136,7 +136,7 @@ Library library = new Library();
 #
 #
 ### Checkpoint one (Library) 
->  __Library__  has a Book Library Class packaged with it.
+>  __Library__  package has a Book Library Class packaged with it.
 #
 
 ```Java
