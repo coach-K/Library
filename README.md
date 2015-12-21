@@ -187,15 +187,9 @@ PriorityQueue<Member> members = library.getBorrowedBook(book);
 while (book.getTotalItem() > 0 && members.poll() != null) {
     book.setTotalItem(book.getTotalItem() - 1);
 }
-
 ```
-
 #
-#
-
->OR
-
-#
+>Another Method: Using the member queue
 #
 
 ```Java
@@ -217,7 +211,7 @@ library.isBorrowedBookEmpty(); //CHECKS IF BOOKQUEUE IS EMPTY
 library.borrowedBookContains(book); //CHECKS IF BOOKQUEUE CONTAINS BOOK
 library.borrowedBookIterator(book); //RETURNS AN ITERATOR FOR BOOKQUEUE
 library.removeBorrowedBook(book); //REMOVES A BOOKQUEUE FROM THE LIST OF BOOK REQUESTED
-...
+--
 library.clearBookRequest();
 ```
 #
