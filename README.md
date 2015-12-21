@@ -189,9 +189,15 @@ while (book.getTotalItem() > 0 && members.poll() != null) {
 }
 
 ```
+
 #
+#
+
 >OR
+
 #
+#
+
 ```Java
 
 Iterator<Member> iterator = library.borrowedBookIterator(book2);
