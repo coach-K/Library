@@ -9,8 +9,6 @@ import java.util.*;
 public abstract class ItemQueue<B extends Item, M extends Member> {
 
     Map<B, PriorityQueue<M>> itemQueueMap;
-    int itemCounter;
-    int memberCounter;
 
     public ItemQueue() {
         itemQueueMap = new HashMap<>();
@@ -24,13 +22,9 @@ public abstract class ItemQueue<B extends Item, M extends Member> {
                 memberList.add(member);
             itemQueueMap.replace(item, memberList);
         } else {
-            //item.setId(itemCounter);
-            //member.setId(memberCounter);
             memberList = new PriorityQueue<>();
             memberList.add(member);
             itemQueueMap.put(item, memberList);
-            //itemCounter++;
-            //memberCounter++;
         }
     }
 
