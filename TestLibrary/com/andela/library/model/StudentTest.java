@@ -3,7 +3,7 @@ package com.andela.library.model;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class StudentTest {
 
@@ -24,6 +24,6 @@ public class StudentTest {
     public void testCompareTo() throws Exception {
 
         assertTrue(student1.compareTo(staff1) == 1);
-        
+
     }
 }
