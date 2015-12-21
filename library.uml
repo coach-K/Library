@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.andela.library</OriginalElement>
+  <nodes>
+    <node x="-306.4320514593086" y="269.1073363750683">com.andela.library.model.Book</node>
+    <node x="136.0" y="711.8184176394293">com.andela.library.Library</node>
+    <node x="1046.4372658621214" y="56.38581972124015">com.andela.library.model.Student</node>
+    <node x="775.1887784998057" y="3.0977898042623693">com.andela.library.model.Member</node>
+    <node x="832.2446160632577" y="1040.8568014379111">com.andela.library.queue.BookQueue</node>
+    <node x="0.0" y="0.0">com.andela.library.Organization</node>
+    <node x="806.2644005082727" y="260.961543779257">com.andela.library.model.Staff</node>
+    <node x="639.9771804038533" y="713.2454982980769">com.andela.library.queue.ItemQueue</node>
+    <node x="-260.5003127324919" y="3.5285179113419645">com.andela.library.model.Item</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.andela.library.model.Staff" target="com.andela.library.model.Member">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.andela.library.model.Student" target="com.andela.library.model.Member">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.andela.library.Library" target="com.andela.library.Organization">
+      <point x="0.0" y="-192.0" />
+      <point x="0.0" y="335.0" />
+    </edge>
+    <edge source="com.andela.library.queue.BookQueue" target="com.andela.library.queue.ItemQueue">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="com.andela.library.model.Book" target="com.andela.library.model.Item">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5032637075718016" x="448.9999999999999" y="548.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
