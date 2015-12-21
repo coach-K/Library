@@ -113,8 +113,8 @@ public class BookQueueTest {
         bookQueue.addItemQueue(book1, staff1);
         assertEquals(bookQueue.itemQueueSize(), 2);
         Iterator<Member> iterator = bookQueue.iterator(book1);
-        int i=0;
-        while (iterator.hasNext()){
+        int i = 0;
+        while (iterator.hasNext()) {
             Member member = iterator.next();
             assertEquals(member.getFullName(), members.get(i++).getFullName()); //uses members object structure.
         }
@@ -161,4 +161,5 @@ public class BookQueueTest {
         bookQueue.clearItemQueue();
         assertEquals(bookQueue.itemQueueSize(), 0);
     }
+
 }
