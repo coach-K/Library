@@ -42,6 +42,8 @@ It also has the capacity and efficiency to manage and organize large number of r
 ### Examples and Usage (Creating a simple Book Library)
 
 >Extend a Member Class
+#
+
 ```Java
 public class Student extends Member {
 	
@@ -70,9 +72,12 @@ public class Staff extends Member {
 Student student = new Student("John Doe");
 Staff staff = new Staff("Jane Doe");
 ```
+
 #
 #
 >Extend Item Class
+#
+
 ```Java
 public class Book extends Item {
 
@@ -87,10 +92,13 @@ public class Book extends Item {
 
 Book book = new Book("JAVA PROGRAMMING", 4);
 ```
+
 #
 #
 
 >Extends ItemQueue class
+#
+
 ```Java
 public class BookQueue extends ItemQueue<Book, Member> {
 
@@ -100,10 +108,13 @@ public class BookQueue extends ItemQueue<Book, Member> {
 
 }
 ```
+
 #
 #
 
 >Extends Organization class
+#
+
 ```Java
 public class Library extends Organization<Book, Member> {
 
@@ -118,43 +129,64 @@ public class Library extends Organization<Book, Member> {
 
 Library library = new Library();
 ```
+
 #
 #
 ### Checkpoint one (Library) has a Book Library packaged with it.
 #
+
 ```Java
 Library library = new Library();
 ```
+#
+
 >ADD MEMBERS TO LIBRARY
+#
+
 ```Java
 library.addMember(staff);
 library.addMember(student);
 ```
+#
+
 >ADD BOOKS TO LIBRARY
+#
+
 ```Java
 library.addItem(book);
 ```
+#
+
 >REQUESTER TO MAKE A BOOK REQUEST
+#
+
 ```Java
 library.addBookRequest(book, student);
 ```
+#
 
 >GET NUMBER OF BOOKS BORROWED
+#
 ```Java
 library.sizeOfBorrowedBooks()
 ```
-
+#
 >GET BORROWED BOOK MEMBERS
+#
 ```Java
 PriorityQueue<Member> members = library.getBorrowedBook(book);
 ```
+#
 >USING BORROWED BOOKS AND MEMBERS
+#
 ```Java
 while (book.getTotalItem() > 0 && members.poll() != null) {
     book.setTotalItem(book.getTotalItem() - 1);
 }
 ```
+#
 >MORE HELPFUL METHODS.
+#
 ```Java
 library.isBorrowedBookEmpty();
 library.borrowedBookContains(book); 
@@ -162,8 +194,9 @@ library.borrowedBookIterator(book);
 library.removeBorrowedBook(book); 
 library.clearBookRequest();
 ```
-
+#
 ### Get Checkpoint One (Library)
+#
 ```
 Local Checkout 
 git clone https://github.com/andela-kogunde/Library.git
