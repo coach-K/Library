@@ -12,7 +12,7 @@ public abstract class ItemQueue<B extends Item, M extends Member> {
     int itemCounter;
     int memberCounter;
 
-    public ItemQueue(){
+    public ItemQueue() {
         itemQueueMap = new HashMap<>();
     }
 
@@ -21,16 +21,16 @@ public abstract class ItemQueue<B extends Item, M extends Member> {
         if (itemQueueMap.containsKey(item)) {
             memberList = itemQueueMap.get(item);
             if (!memberList.contains(member))
-                    memberList.add(member);
+                memberList.add(member);
             itemQueueMap.replace(item, memberList);
         } else {
-            item.setId(itemCounter);
-            member.setId(memberCounter);
+            //item.setId(itemCounter);
+            //member.setId(memberCounter);
             memberList = new PriorityQueue<>();
             memberList.add(member);
             itemQueueMap.put(item, memberList);
-            itemCounter++;
-            memberCounter++;
+            //itemCounter++;
+            //memberCounter++;
         }
     }
 
@@ -42,7 +42,7 @@ public abstract class ItemQueue<B extends Item, M extends Member> {
 
     public ArrayList<PriorityQueue<M>> getAllItemQueue(Collection<? extends B> items) {
         ArrayList<PriorityQueue<M>> itemList = new ArrayList<>();
-        for (B item : items){
+        for (B item : items) {
             itemList.add(getItemQueue(item));
         }
         return itemList;
@@ -53,12 +53,12 @@ public abstract class ItemQueue<B extends Item, M extends Member> {
     }
 
     public void removeAllItemsQueue(Collection<? extends B> items) {
-        for (B item : items){
+        for (B item : items) {
             removeItemQueue(item);
         }
     }
 
-    public Iterator<M> iterator(B item){
+    public Iterator<M> iterator(B item) {
         return getItemQueue(item).iterator();
     }
 

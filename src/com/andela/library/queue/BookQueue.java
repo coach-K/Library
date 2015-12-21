@@ -6,7 +6,7 @@ import com.andela.library.model.Member;
 
 public class BookQueue extends ItemQueue<Book, Member> {
 
-    public BookQueue(){
+    public BookQueue() {
         super();
     }
 
