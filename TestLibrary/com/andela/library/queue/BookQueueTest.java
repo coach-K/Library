@@ -9,6 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.PriorityQueue;
 
 import static org.junit.Assert.*;
 
@@ -22,17 +24,17 @@ public class BookQueueTest {
     Book book2 = new Book("GIFTED LEGS", "NEB SONCAR", "456-ANDELA", 5);
 
     ArrayList<Book> books;
-    BookQueue bookQueue;
-
     ArrayList<Member> members;
+
+    BookQueue bookQueue;
 
     @Before
     public void setUp() throws Exception {
 
         members = new ArrayList<>();
+        members.add(staff1);
         members.add(student1);
         members.add(student2);
-        members.add(staff1);
 
         books = new ArrayList<>();
         books.add(book1);
@@ -46,146 +48,117 @@ public class BookQueueTest {
 
     }
 
+
     @Test
-    public void testAddItem() throws Exception {
-        bookQueue.addItem(book1);
-        assertTrue("bookQueue.itemSize() is greater than 0", bookQueue.itemSize() > 0);
+    public void testAddItemQueue() throws Exception {
+        bookQueue.addItemQueue(book1, student1);
+        assertEquals(bookQueue.itemQueueSize(), 1);
     }
 
     @Test
-    public void testAddAllItems() throws Exception {
-        bookQueue.addAllItems(books);
-        assertTrue("bookQueue.itemSize() is greater than 0", bookQueue.itemSize() > 1);
+    public void testGetItemQueue() throws Exception {
+        bookQueue.addItemQueue(book1, student1);
+        bookQueue.addItemQueue(book2, student2);
+        bookQueue.addItemQueue(book2, student1);
+        bookQueue.addItemQueue(book1, student2);
+        assertEquals(bookQueue.itemQueueSize(), 2);
+        PriorityQueue<Member> members1 = bookQueue.getItemQueue(book1);
+        assertTrue(members1.size() == 2);
     }
 
     @Test
-    public void testGetItem() throws Exception {
-        bookQueue.addAllItems(books);
-        Book book = bookQueue.getItem(0);
-        assertTrue(book.getTitle().equals(book1.getTitle()));
+    public void testGetAllItemQueue() throws Exception {
+        bookQueue.addItemQueue(book1, staff1);
+        bookQueue.addItemQueue(book1, student1);
+        bookQueue.addItemQueue(book2, student2);
+        bookQueue.addItemQueue(book2, student1);
+        bookQueue.addItemQueue(book1, student2);
+        assertEquals(bookQueue.itemQueueSize(), 2);
+        ArrayList<Book> books1 = new ArrayList<>();
+        ArrayList<PriorityQueue<Member>> membersList = bookQueue.getAllItemQueue(books);
+        assertTrue(membersList.size() == 2);
+        PriorityQueue<Member> members1 = membersList.get(0);
+        members1.addAll(membersList.get(1));
+        assertEquals(members1.size(), 5);
+        assertEquals(members1.peek().getFullName(), staff1.getFullName());
     }
 
     @Test
-    public void testGetAllItems() throws Exception {
-        bookQueue.addAllItems(books);
-        assertArrayEquals(books.toArray(), bookQueue.getAllItems().toArray());
+    public void testRemoveItemQueue() throws Exception {
+        bookQueue.addItemQueue(book1, student1);
+        bookQueue.addItemQueue(book2, student2);
+        bookQueue.addItemQueue(book2, student1);
+        bookQueue.addItemQueue(book1, student2);
+        assertEquals(bookQueue.itemQueueSize(), 2);
+        bookQueue.removeItemQueue(book1);
+        assertEquals(bookQueue.itemQueueSize(), 1);
     }
 
     @Test
-    public void testRemoveItem() throws Exception {
-        bookQueue.addAllItems(books);
-        assertEquals(bookQueue.itemSize(), 2);
-        bookQueue.removeItem(book1);
-        assertEquals(bookQueue.itemSize(), 1);
+    public void testRemoveAllItemsQueue() throws Exception {
+        bookQueue.addItemQueue(book1, student1);
+        bookQueue.addItemQueue(book2, student2);
+        bookQueue.addItemQueue(book2, student1);
+        bookQueue.addItemQueue(book1, student2);
+        assertEquals(bookQueue.itemQueueSize(), 2);
+        bookQueue.removeAllItemsQueue(books);
+        assertEquals(bookQueue.itemQueueSize(), 0);
     }
 
     @Test
-    public void testRemoveAllItems() throws Exception {
-        bookQueue.addAllItems(books);
-        assertEquals(bookQueue.itemSize(), 2);
-
-        ArrayList<Integer> indexes = new ArrayList<>();
-        indexes.add(0);
-        indexes.add(0);
-        bookQueue.removeAllItems(indexes);
-        assertEquals(bookQueue.itemSize(), 0);
+    public void testIterator() throws Exception {
+        bookQueue.addItemQueue(book1, student1);
+        bookQueue.addItemQueue(book2, student2);
+        bookQueue.addItemQueue(book2, student1);
+        bookQueue.addItemQueue(book1, staff1);
+        assertEquals(bookQueue.itemQueueSize(), 2);
+        Iterator<Member> iterator = bookQueue.iterator(book1);
+        int i=0;
+        while (iterator.hasNext()){
+            Member member = iterator.next();
+            assertEquals(member.getFullName(), members.get(i++).getFullName()); //uses members object structure.
+        }
     }
 
     @Test
-    public void testItemSize() throws Exception {
-        bookQueue.addAllItems(books);
-        assertEquals(bookQueue.itemSize(), 2);
+    public void testItemQueueSize() throws Exception {
+        bookQueue.addItemQueue(book1, staff1);
+        bookQueue.addItemQueue(book1, student1);
+        bookQueue.addItemQueue(book2, student2);
+        bookQueue.addItemQueue(book2, student1);
+        assertEquals(bookQueue.itemQueueSize(), 2);
     }
 
     @Test
-    public void testClearItems() throws Exception {
-        bookQueue.addAllItems(books);
-        assertEquals(bookQueue.itemSize(), 2);
-        bookQueue.clearItems();
-        assertEquals(bookQueue.itemSize(), 0);
+    public void testItemQueueContains() throws Exception {
+        bookQueue.addItemQueue(book1, staff1);
+        bookQueue.addItemQueue(book1, student1);
+        bookQueue.addItemQueue(book2, student2);
+        bookQueue.addItemQueue(book2, student1);
+        assertEquals(bookQueue.itemQueueSize(), 2);
+        assertTrue(bookQueue.itemQueueContains(book1));
     }
 
     @Test
-    public void testAddMember() throws Exception {
-        bookQueue.addMember(student1);
-        assertTrue("bookQueue.memberSize() is greater than 0", bookQueue.memberSize() > 0);
+    public void testItemQueueToArray() throws Exception {
+        bookQueue.addItemQueue(book1, student1);
+        bookQueue.addItemQueue(book1, student2);
+        bookQueue.addItemQueue(book1, staff1);
+        bookQueue.addItemQueue(book2, student2);
+        bookQueue.addItemQueue(book2, student1);
+        assertEquals(bookQueue.itemQueueSize(), 2);
+        assertArrayEquals(bookQueue.itemQueueToArray(book1), members.toArray());
     }
 
     @Test
-    public void testAddAllMembers() throws Exception {
-        bookQueue.addAllMembers(members);
-        assertTrue("bookQueue.memberSize() is greater than 0", bookQueue.memberSize() > 2);
+    public void testClearItemQueue() throws Exception {
+        bookQueue.addItemQueue(book1, student1);
+        bookQueue.addItemQueue(book1, student2);
+        bookQueue.addItemQueue(book1, staff1);
+        bookQueue.addItemQueue(book2, student2);
+        bookQueue.addItemQueue(book2, student1);
+        assertEquals(bookQueue.itemQueueSize(), 2);
+        bookQueue.clearItemQueue();
+        assertEquals(bookQueue.itemQueueSize(), 0);
     }
-
-    @Test
-    public void testGetNextMember() throws Exception {
-        bookQueue.addAllMembers(members);
-        Member member = bookQueue.getNextMember();
-        assertTrue(member.getFullName().equals(student1.getFullName()));
-    }
-
-    @Test
-    public void testGetAllMembers() throws Exception {
-        bookQueue.addAllMembers(members);
-        assertArrayEquals(members.toArray(), bookQueue.getAllMembers().toArray());
-    }
-
-    @Test
-    public void testRemoveMember() throws Exception {
-        bookQueue.addAllMembers(members);
-        assertEquals(bookQueue.memberSize(), 3);
-        bookQueue.removeMember(student1);
-        assertEquals(bookQueue.memberSize(), 2);
-    }
-
-    @Test
-    public void testRemoveAllMembers() throws Exception {
-        bookQueue.addAllMembers(members);
-        assertEquals(bookQueue.memberSize(), 3);
-
-        ArrayList<Member> indexes = new ArrayList<>();
-        indexes.add(members.get(0));
-        indexes.add(members.get(1));
-        bookQueue.removeAllMembers(indexes);
-        assertEquals(bookQueue.memberSize(), 1);
-    }
-
-    @Test
-    public void testMemberSize() throws Exception {
-        bookQueue.addAllMembers(members);
-        assertEquals(bookQueue.memberSize(), 3);
-    }
-
-    @Test
-    public void testClearMembers() throws Exception {
-        bookQueue.addAllMembers(members);
-        assertEquals(bookQueue.memberSize(), 3);
-        bookQueue.clearMembers();
-        assertEquals(bookQueue.memberSize(), 0);
-    }
-
-    @Test
-    public void testSingleBookSingleMemberQueue() throws Exception {
-        bookQueue.singleBookSingleMemberQueue(book1, student1);
-        assertTrue(bookQueue.itemSize() > 0 && bookQueue.memberSize() > 0);
-    }
-
-    @Test
-    public void testSingleBookMultipleMemberQueue() throws Exception {
-        bookQueue.singleBookMultipleMemberQueue(book1, members);
-        assertTrue(bookQueue.itemSize() < 2 && bookQueue.memberSize() > 2);
-    }
-
-    @Test
-    public void testMultipleBookMultipleMemberQueue() throws Exception {
-        bookQueue.multipleBookMultipleMemberQueue(books, members);
-        assertTrue(bookQueue.itemSize() > 1 && bookQueue.memberSize() > 2);
-    }
-
-    @Test
-    public void testMultipleBookSingleMemberQueue() throws Exception {
-        bookQueue.multipleBookSingleMemberQueue(books, student1);
-        assertTrue(bookQueue.itemSize() > 1 && bookQueue.memberSize() == 1);
-    }
-
 }

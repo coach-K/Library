@@ -1,120 +1,81 @@
 package com.andela.library.queue;
 
 
-import com.andela.library.collections.CollectionsInterface;
 import com.andela.library.model.Item;
 import com.andela.library.model.Member;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.PriorityQueue;
+import java.util.*;
 
-public abstract class ItemQueue<B extends Item, M extends Member> implements CollectionsInterface<B, M> {
+public abstract class ItemQueue<B extends Item, M extends Member> {
 
-    private ArrayList<B> itemList;
-    private PriorityQueue<M> memberList;
-
-    private int itemCounter;
-    private int memberCounter;
+    Map<B, PriorityQueue<M>> itemQueueMap;
+    int itemCounter;
+    int memberCounter;
 
     public ItemQueue(){
-        itemList = new ArrayList<>();
-        memberList = new PriorityQueue<>();
+        itemQueueMap = new HashMap<>();
     }
 
-    @Override
-    public void addItem(B item) {
-        item.setId(itemCounter);
-        itemList.add(item);
-        itemCounter++;
-    }
-
-    @Override
-    public void addAllItems(Collection<B> items) {
-        for (B item : items){
-            addItem(item);
+    public void addItemQueue(B item, M member) {
+        PriorityQueue<M> memberList;
+        if (itemQueueMap.containsKey(item)) {
+            memberList = itemQueueMap.get(item);
+            if (!memberList.contains(member))
+                    memberList.add(member);
+            itemQueueMap.replace(item, memberList);
+        } else {
+            item.setId(itemCounter);
+            member.setId(memberCounter);
+            memberList = new PriorityQueue<>();
+            memberList.add(member);
+            itemQueueMap.put(item, memberList);
+            itemCounter++;
+            memberCounter++;
         }
     }
 
-    @Override
-    public B getItem(int index) {
-        return itemList.get(index);
+    public PriorityQueue<M> getItemQueue(B item) {
+        if (itemQueueMap.containsKey(item))
+            return itemQueueMap.get(item);
+        else return null;
     }
 
-    @Override
-    public Collection<B> getAllItems() {
+    public ArrayList<PriorityQueue<M>> getAllItemQueue(Collection<? extends B> items) {
+        ArrayList<PriorityQueue<M>> itemList = new ArrayList<>();
+        for (B item : items){
+            itemList.add(getItemQueue(item));
+        }
         return itemList;
     }
 
-    @Override
-    public void removeItem(B item) {
-        itemList.remove(item);
+    public void removeItemQueue(B item) {
+        itemQueueMap.remove(item);
     }
 
-    @Override
-    public void removeItem(int index) {
-        itemList.remove(index);
-    }
-
-    @Override
-    public void removeAllItems(Collection<Integer> indexes) {
-        for (int index : indexes){
-            removeItem(index);
+    public void removeAllItemsQueue(Collection<? extends B> items) {
+        for (B item : items){
+            removeItemQueue(item);
         }
     }
 
-    @Override
-    public int itemSize() {
-        return itemList.size();
+    public Iterator<M> iterator(B item){
+        return getItemQueue(item).iterator();
     }
 
-    @Override
-    public void clearItems() {
-        itemList.clear();
+    public int itemQueueSize() {
+        return itemQueueMap.size();
     }
 
-    @Override
-    public void addMember(M member) {
-        member.setId(memberCounter);
-        memberList.add(member);
-        memberCounter++;
+    public boolean itemQueueContains(B item) {
+        return itemQueueMap.containsKey(item);
     }
 
-    @Override
-    public void addAllMembers(Collection<M> members) {
-        for (M member : members){
-            addMember(member);
-        }
+    public Object[] itemQueueToArray(B item) {
+        return itemQueueMap.get(item).toArray();
     }
 
-    public M getNextMember() {
-        return memberList.poll();
+    public void clearItemQueue() {
+        itemQueueMap.clear();
     }
 
-    @Override
-    public Collection<M> getAllMembers() {
-        return memberList;
-    }
-
-    @Override
-    public void removeMember(M member) {
-        memberList.remove(member);
-    }
-
-    @Override
-    public void removeAllMembers(Collection<M> members) {
-        for (M member : members){
-            removeMember(member);
-        }
-    }
-
-    @Override
-    public int memberSize() {
-        return memberList.size();
-    }
-
-    @Override
-    public void clearMembers() {
-        memberList.clear();
-    }
 }
