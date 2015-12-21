@@ -1,27 +1,29 @@
-# Checkpoint One
+# Checkpoint One (Library)
 
->Research reveals that most people visit fun environments such as cinemas, churches, libraries, amusement pack e.t.c because of its organized fun activities. Organized places, events or organization attracts people. 
+>Research reveals that most people visit fun environments such as cinemas, churches, libraries, amusement pack e.t.c because of its organized fun activities.
 
 >Imagine how muddled a church or a Software development process or a football team would be if it's not organized. 
 #####
-For instance, let's take a real life Book Library process where Staff has priority over Students.
+The subsequent paragraph is a real life Book Library process where Staff has priority over Students.
 
 1.  Before a book is lend out.
-2.  Library Manager verifies that requester (Staff or Student) is a member of its Book Library, else no book is lend out.
+2.  Library Manager verifies that requester (Staff or Student) is a member of its Book Library Club, else no book is lend out.
 3.  If requester is a member then Library Manager checks if the requested book is available.
 4.  If true then the book is lend out based on set priority.
 
->This process can be hectic with large number of requesters'.
+>This process can be hectic with large number of requesters' requesting for book at the same time.
+#
+
+  __Library__  is a java package developed to simplify a tedious organized process. It is packaged with an ItemQueue class to handle prioritization.
+It also has the capacity to manage and organize large number of requesters'. 
+
+  __Library__   Package is easy to setup and requires no extra plug-in.
 
 # Library
 UML Class Diagram
 
-![Alt text](https://github.com/andela-kogunde/Library/blob/ft-test-to-fail-and-pass-application-logic-110294434/diagram.png?raw=true "Optional Title")
+![Alt text](https://github.com/andela-kogunde/Library/blob/ft-test-to-fail-and-pass-application-logic-110294434/diagram.png?raw=true "Library UML Class Diagram")
 
-  __Library__  is a java package that aims at simplifying a tedious organized process. It is packaged with an ItemQueue class to handle prioritization.
-It also has the capacity and efficiency to manage and organize large number of requesters'. 
-
-  __Library__   Package is easy to setup and requires no extra plug-in.
 
 #
 
@@ -30,18 +32,18 @@ It also has the capacity and efficiency to manage and organize large number of r
 
 * Abstract Member (class) : Has a particular ability to manage member information e.g. (id, name);
 
-### Manage items (Books, Pen etc) of an organization. 
+### Manage items (Books, Golf Cart etc) of an organization. 
 
-* Abstract Item (Class): Has the ability to manages items own by the organization e.g. (Book for Library, Jersey for Football club).
+* Abstract Item (Class): Has the ability to manages items own by an organization e.g. (Book for Library, Jersey for Football club).
 
 ### Prioritize members.
 
-* ItemQueue (Class) : Has the ability to prioritize member e.g. (Staff over Student of a Library, Coach over players of a Football team).
+* ItemQueue (Class) : Has the capicity to prioritize member e.g. (Staff over Student of a Library, Coach over players of a Football team).
 
 #
-### Examples and Usage (Creating a simple Book Library)
+### Examples and Usage (Creating a simple Book Library).
 
->Extend a Member Class
+>Extending a Member Class
 #
 
 ```Java
@@ -75,7 +77,7 @@ Staff staff = new Staff("Jane Doe");
 
 #
 #
->Extend Item Class
+>Extending an Item Class
 #
 
 ```Java
@@ -96,7 +98,7 @@ Book book = new Book("JAVA PROGRAMMING", 4);
 #
 #
 
->Extends ItemQueue class
+>Extending an ItemQueue class
 #
 
 ```Java
@@ -112,7 +114,7 @@ public class BookQueue extends ItemQueue<Book, Member> {
 #
 #
 
->Extends Organization class
+>Extending an Organization class
 #
 
 ```Java
@@ -132,7 +134,8 @@ Library library = new Library();
 
 #
 #
-### Checkpoint one (Library) has a Book Library packaged with it.
+### Checkpoint one (Library) 
+>  __Library__  has a Book Library Class packaged with it.
 #
 
 ```Java
@@ -140,7 +143,7 @@ Library library = new Library();
 ```
 #
 
->ADD MEMBERS TO LIBRARY
+>Add members to Library.
 #
 
 ```Java
@@ -149,7 +152,7 @@ library.addMember(student);
 ```
 #
 
->ADD BOOKS TO LIBRARY
+>Add a book to Library.
 #
 
 ```Java
@@ -157,7 +160,7 @@ library.addItem(book);
 ```
 #
 
->REQUESTER TO MAKE A BOOK REQUEST
+>Add a book request.
 #
 
 ```Java
@@ -165,33 +168,45 @@ library.addBookRequest(book, student);
 ```
 #
 
->GET NUMBER OF BOOKS BORROWED
+>Get number of book borrowed
 #
 ```Java
 library.sizeOfBorrowedBooks()
 ```
 #
->GET BORROWED BOOK MEMBERS
+>Get members queue who borrowed a book
 #
 ```Java
 PriorityQueue<Member> members = library.getBorrowedBook(book);
 ```
 #
->USING BORROWED BOOKS AND MEMBERS
+>Using the member queue
 #
 ```Java
 while (book.getTotalItem() > 0 && members.poll() != null) {
     book.setTotalItem(book.getTotalItem() - 1);
 }
+
+//OR
+
+Iterator<Member> iterator = library.borrowedBookIterator(book2);
+	while (iterator.hasNext()) {
+            Member member = iterator.next();
+        }
 ```
 #
 >MORE HELPFUL METHODS.
 #
 ```Java
-library.isBorrowedBookEmpty();
-library.borrowedBookContains(book); 
-library.borrowedBookIterator(book);
-library.removeBorrowedBook(book); 
+library.addMember(student); //ADD SINGLE MEMBER
+library.addAllMembers(memberList); //ADD COLLECTION OF MEMBER
+library.addItem(book); //ADD SINGLE ITEM
+library.addAllItems(bookList); //ADD COLLECTION OF ITEM E.G. BOOKS
+library.isBorrowedBookEmpty(); //CHECKS IF BOOKQUEUE IS EMPTY
+library.borrowedBookContains(book); //CHECKS IF BOOKQUEUE CONTAINS BOOK
+library.borrowedBookIterator(book); //RETURNS AN ITERATOR FOR BOOKQUEUE
+library.removeBorrowedBook(book); //REMOVES A BOOKQUEUE FROM THE LIST OF BOOK REQUESTED
+...
 library.clearBookRequest();
 ```
 #
