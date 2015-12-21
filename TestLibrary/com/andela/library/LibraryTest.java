@@ -61,7 +61,7 @@ public class LibraryTest {
     public void testAddBookRequest1() throws Exception {
         library.addAllItems(books);
         library.addAllMembers(members);
-        library.addBookRequest(book2,members);
+        library.addBookRequest(book2, members);
         assertEquals(library.sizeOfBorrowedBooks(), 1);
     }
 
@@ -77,7 +77,7 @@ public class LibraryTest {
     public void testAddAllBookRequests1() throws Exception {
         library.addAllItems(books);
         library.addAllMembers(members);
-        library.addAllBookRequests(books,members);
+        library.addAllBookRequests(books, members);
         assertEquals(library.sizeOfBorrowedBooks(), 3);
     }
 
@@ -85,7 +85,7 @@ public class LibraryTest {
     public void testGetBorrowedBook() throws Exception {
         library.addAllItems(books);
         library.addAllMembers(members);
-        library.addAllBookRequests(books,staff1);
+        library.addAllBookRequests(books, staff1);
         assertEquals(library.sizeOfBorrowedBooks(), 3);
         PriorityQueue<Member> members1 = library.getBorrowedBook(book1);
         assertEquals(members1.peek().getFullName(), staff1.getFullName());
@@ -95,17 +95,34 @@ public class LibraryTest {
     public void testGetAllBorrowedBooks() throws Exception {
         library.addAllItems(books);
         library.addAllMembers(members);
-        library.addAllBookRequests(books,staff1);
+        library.addAllBookRequests(books, staff1);
         assertEquals(library.sizeOfBorrowedBooks(), 3);
         ArrayList<PriorityQueue<Member>> members1 = library.getAllBorrowedBooks(books);
         assertEquals(members1.get(0).peek().getFullName(), staff1.getFullName());
     }
 
     @Test
+    public void testBookToMember() throws Exception {
+        library.addAllItems(books);
+        library.addAllMembers(members);
+        library.addAllBookRequests(books, members);
+        assertEquals(library.sizeOfBorrowedBooks(), 3);
+        PriorityQueue<Member> members1 = library.getBorrowedBook(book1);
+        assertEquals(members1.size(), 5);
+        assertEquals(book1.getTotalItem(), 4);
+        while (book1.getTotalItem() > 0 && members1.poll() != null) {
+            book1.setTotalItem(book1.getTotalItem() - 1);
+        }
+        assertEquals(book1.getTotalItem(), 0);
+        assertEquals(members1.size(), 1);
+        assertEquals(members1.poll().getId(), student3.getId());
+    }
+
+    @Test
     public void testSizeOfBorrowedBooks() throws Exception {
         library.addAllItems(books);
         library.addAllMembers(members);
-        library.addAllBookRequests(books,staff1);
+        library.addAllBookRequests(books, staff1);
         assertEquals(library.sizeOfBorrowedBooks(), 3);
     }
 
@@ -138,7 +155,7 @@ public class LibraryTest {
         library.addAllBookRequests(books, staff1);
         assertEquals(library.sizeOfBorrowedBooks(), 3);
         Iterator<Member> iterator = library.borrowedBookIterator(book2);
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Member member = iterator.next();
             assertEquals(member.getFullName(), staff1.getFullName());
         }
@@ -288,7 +305,7 @@ public class LibraryTest {
         assertTrue(library.isMemberEmpty());
         library.addAllMembers(members);
         assertFalse(library.isMemberEmpty());
-        ArrayList <Member> members1 = library.getAllMembers();
+        ArrayList<Member> members1 = library.getAllMembers();
         assertEquals(members1.get(0).getFullName(), student1.getFullName());
     }
 
@@ -297,7 +314,7 @@ public class LibraryTest {
         assertTrue(library.isMemberEmpty());
         library.addAllMembers(members);
         assertFalse(library.isMemberEmpty());
-        ArrayList <Member> members1 = library.getAllMembers();
+        ArrayList<Member> members1 = library.getAllMembers();
         assertEquals(members1.get(0).getFullName(), student1.getFullName());
         assertEquals(library.memberSize(), 5);
         library.removeMember(0);
@@ -311,7 +328,7 @@ public class LibraryTest {
         assertTrue(library.isMemberEmpty());
         library.addAllMembers(members);
         assertFalse(library.isMemberEmpty());
-        ArrayList <Member> members1 = library.getAllMembers();
+        ArrayList<Member> members1 = library.getAllMembers();
         assertEquals(members1.get(0).getFullName(), student1.getFullName());
         assertEquals(library.memberSize(), 5);
         library.removeMember(staff1);
@@ -325,7 +342,7 @@ public class LibraryTest {
         assertTrue(library.isMemberEmpty());
         library.addAllMembers(members);
         assertFalse(library.isMemberEmpty());
-        ArrayList <Member> members1 = library.getAllMembers();
+        ArrayList<Member> members1 = library.getAllMembers();
         assertEquals(members1.get(0).getFullName(), student1.getFullName());
         assertEquals(library.memberSize(), 5);
         library.removeAllMembers(members);
@@ -337,7 +354,7 @@ public class LibraryTest {
         assertTrue(library.isMemberEmpty());
         library.addAllMembers(members);
         assertFalse(library.isMemberEmpty());
-        ArrayList <Member> members1 = library.getAllMembers();
+        ArrayList<Member> members1 = library.getAllMembers();
         assertEquals(members1.get(0).getFullName(), student1.getFullName());
         assertEquals(library.memberSize(), 5);
         library.removeAllMembers(members);
@@ -349,7 +366,7 @@ public class LibraryTest {
         assertTrue(library.isMemberEmpty());
         library.addAllMembers(members);
         assertFalse(library.isMemberEmpty());
-        ArrayList <Member> members1 = library.getAllMembers();
+        ArrayList<Member> members1 = library.getAllMembers();
         assertEquals(members1.get(0).getFullName(), student1.getFullName());
         assertEquals(library.memberSize(), 5);
         library.clearMembers();
@@ -361,7 +378,7 @@ public class LibraryTest {
         assertTrue(library.isMemberEmpty());
         library.addAllMembers(members);
         assertFalse(library.isMemberEmpty());
-        ArrayList <Member> members1 = library.getAllMembers();
+        ArrayList<Member> members1 = library.getAllMembers();
         assertEquals(members1.get(0).getFullName(), student1.getFullName());
         assertEquals(library.memberSize(), 5);
         assertTrue(library.isMemberRegistered(student2));
