@@ -4,18 +4,19 @@
 
 >Imagine how muddled a church or a Software development process or a football team would be if it's not organized. 
 #####
-The subsequent paragraph is a real life Book Library process where Staff has priority over Students.
+The subsequent paragraphs explains the process of real life Book Library senario where Staff has priority over Students.
 
+0.  Requester requests for book.
 1.  Before a book is lend out.
 2.  Library Manager verifies that requester (Staff or Student) is a member of its Book Library Club, else no book is lend out.
 3.  If requester is a member then Library Manager checks if the requested book is available.
 4.  If true then the book is lend out based on set priority.
 
->This process can be hectic with large number of requesters' requesting for book at the same time.
+>This process can be hectic having large number of requesters' concurrently.
 #
 
   __Library__  is a java package developed to simplify a tedious organized process. It is packaged with an ItemQueue class to handle prioritization.
-It also has the capacity to manage and organize large number of requesters'. 
+It also has the capacity to manage and organize large number of requesters' concurrently. 
 
   __Library__   Package is easy to setup and requires no extra plug-in.
 
