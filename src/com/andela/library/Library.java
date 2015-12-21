@@ -12,40 +12,40 @@ import java.util.PriorityQueue;
 public class Library extends Organization<Book, Member> {
 
     BookQueue bookQueue;
-
-    public Library(){
+    
+    public Library() {
         super();
         bookQueue = new BookQueue();
     }
 
-    public void addBookRequest(Book book, Member member){
+    public void addBookRequest(Book book, Member member) {
         if (isItemRegistered(book) && isMemberRegistered(member))
             bookQueue.addItemQueue(book, member);
     }
 
-    public void addBookRequest(Book book, Collection<? extends Member> members){
-        for (Member member : members){
+    public void addBookRequest(Book book, Collection<? extends Member> members) {
+        for (Member member : members) {
             addBookRequest(book, member);
         }
     }
 
     public void addAllBookRequests(Collection<? extends Book> books, Member member) {
-        for (Book book : books){
+        for (Book book : books) {
             addBookRequest(book, member);
         }
     }
 
     public void addAllBookRequests(Collection<? extends Book> books, Collection<? extends Member> members) {
-        for (Book book : books){
+        for (Book book : books) {
             addBookRequest(book, members);
         }
     }
 
-    public PriorityQueue<Member> getBorrowedBook(Book book){
+    public PriorityQueue<Member> getBorrowedBook(Book book) {
         return bookQueue.getItemQueue(book);
     }
 
-    public ArrayList<PriorityQueue<Member>> getAllBorrowedBooks(Collection<Book> books){
+    public ArrayList<PriorityQueue<Member>> getAllBorrowedBooks(Collection<Book> books) {
         return bookQueue.getAllItemQueue(books);
     }
 
@@ -74,7 +74,7 @@ public class Library extends Organization<Book, Member> {
     }
 
     public void removeAllBorrowedBook(Collection<? extends Book> books) {
-        for (Book book : books){
+        for (Book book : books) {
             removeBorrowedBook(book);
         }
     }

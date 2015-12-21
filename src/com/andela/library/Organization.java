@@ -7,7 +7,7 @@ import com.andela.library.model.Member;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public abstract class Organization <B extends Item,M extends Member>  {
+public abstract class Organization<B extends Item, M extends Member> {
 
     ArrayList<M> memberList;
     ArrayList<B> itemList;
@@ -27,7 +27,7 @@ public abstract class Organization <B extends Item,M extends Member>  {
     }
 
     public void addAllItems(Collection<? extends B> items) {
-        for (B item : items){
+        for (B item : items) {
             addItem(item);
         }
     }
@@ -49,7 +49,7 @@ public abstract class Organization <B extends Item,M extends Member>  {
     }
 
     public void removeAllItems(Collection<? extends B> items) {
-        for (B item : items){
+        for (B item : items) {
             removeItem(item);
         }
     }
@@ -69,7 +69,7 @@ public abstract class Organization <B extends Item,M extends Member>  {
     }
 
     public void addAllMembers(Collection<? extends M> members) {
-        for (M member : members){
+        for (M member : members) {
             addMember(member);
         }
     }
@@ -91,7 +91,7 @@ public abstract class Organization <B extends Item,M extends Member>  {
     }
 
     public void removeAllMembers(Collection<? extends M> members) {
-        for (M member : members){
+        for (M member : members) {
             removeMember(member);
         }
     }
@@ -108,23 +108,23 @@ public abstract class Organization <B extends Item,M extends Member>  {
         return memberList.indexOf(member) != -1;
     }
 
-    public boolean isItemRegistered(B item){
+    public boolean isItemRegistered(B item) {
         return itemList.indexOf(item) != -1;
     }
 
-    public boolean isItemEmpty(){
+    public boolean isItemEmpty() {
         return itemList.size() == 0;
     }
 
-    public boolean isMemberEmpty(){
+    public boolean isMemberEmpty() {
         return memberList.size() == 0;
     }
 
-    public boolean itemContains(B item){
+    public boolean itemContains(B item) {
         return itemList.contains(item);
     }
 
-    public boolean memberContains(M member){
+    public boolean memberContains(M member) {
         return memberList.contains(member);
     }
 
