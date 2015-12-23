@@ -1,12 +1,21 @@
 package com.andela.library.model;
 
-
+/**
+ * Book class extends Item class.
+ */
 public class Book extends Item {
 
     private String title;
     private String isbnNumber;
     private String author;
 
+    /**
+     * Create a new instance of Book.
+     * @param title title of the book.
+     * @param author author of the book.
+     * @param isbnNumber ISBN Number of the book.
+     * @param totalCopies Total Copies available.
+     */
     public Book(String title, String author, String isbnNumber, int totalCopies) {
         super(totalCopies);
         this.title = title;
